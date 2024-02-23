@@ -65,3 +65,37 @@ NOTE: the (EXPOSE) we used above is just for documentation.
 But to make the server listen on some port we do it like this:
     $ docker run --name first-node-app-container -d -p 1000:4000 first-node-app
 // This means forward the port 1000 of my machine to port 4000 in the container that I've previously set in (EXPOSE)
+
+
+
+    =======================================================================================
+    =======================================================================================
+
+
+To open an interactive terminal from the container:
+    $ docker exec -it first-node-app-container bash
+By default, it will use the (root) user. But you can create and use another user.
+
+In this terminal, you can use (ls), (pwd), ... to access files in the container.
+
+If you check all files in the docker container, you'll find that you've copied "Node_Modules" 
+    which contains dev-dependencies that you don't need in production & .env that are your env variables.
+
+To hide these files from beiing copied to the container we use (.dockerignore) file:
+we usually hide (Dockerfile) 
+#You don't need to copy it as you've already run it.
+
+To exit from container terminal to default terminal: 
+    $ exit
+
+// NOTE: when you hit $ls  You'll find "node_modules" 
+// But it's not from copying files but from running "npm install"
+
+
+    =======================================================================================
+    =======================================================================================
+
+
+NOTE: we separated (COPY package.json) & (COPY . .)
+because docker can cash if no change happended to (package.json)
+but if we copy all files in the same command, every time we build an image all modules will be reinstalled.
