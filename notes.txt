@@ -99,3 +99,29 @@ To exit from container terminal to default terminal:
 NOTE: we separated (COPY package.json) & (COPY . .)
 because docker can cash if no change happended to (package.json)
 but if we copy all files in the same command, every time we build an image all modules will be reinstalled.
+
+
+    =======================================================================================
+    =======================================================================================
+
+
+NOTE: when I change the file directory, I have to change the image not only the container to get latest updates.
+
+
+    =======================================================================================
+    =======================================================================================
+
+To run the logs of the server (container)
+    $ docker logs <CONTRAINER-NAME>
+
+
+
+# To make docker server run with (nodemon), we simply put the command we specified in package.json
+    CMD [ "npm", "run", "start-dev" ]   
+
+
+    =======================================================================================
+                                    Docker Hot Reload
+    =======================================================================================
+
+    $ docker run --name express-node-app-container -v  <FULL-PATH-OF-WORKING-DIRECTORY>:<PATH-TO-SYNC-WITH-IN-CONTAINER>  -d -p 4000:4000 express-node-app  
