@@ -125,3 +125,14 @@ To run the logs of the server (container)
     =======================================================================================
 
     $ docker run --name express-node-app-container -v  <FULL-PATH-OF-WORKING-DIRECTORY>:<PATH-TO-SYNC-WITH-IN-CONTAINER>  -d -p 4000:4000 express-node-app  
+
+To prevent changes of docker container from changing the local working directory:
+    - We add (readonly) after the path of the docker container. (ro)
+    $ docker run --name nodemon-app-container2 -v C:/repos/Docker-Study:/app:ro -d -p 2200:4000 test-nodemon-app
+
+NOTE: we can replace the long path of the command $(pwd)        ===>    (for linux)
+
+NOTE: If I deleted "node_modules" the docker container will stop. as the container will sync the changes from the working directory.
+// To save specified files even if they were deleted from the working directory:
+/// We will add another flag -v after that the files or folder we want to save from deletion.
+    $ docker run --name nodemon-app-container2 -v C:/repos/Docker-Study:/app:ro -v /app/node_modules -d -p 2200:4000 test-nodemon-app
