@@ -4,3 +4,4 @@ services:
       - ./src:/app/src:ro              ### NOTE: here you can use (relative path)
     environment:
       - NODE_ENV=development
+    command: npm run start-dev

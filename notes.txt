@@ -224,3 +224,9 @@ and same for (Production)
 // If you want to recreate an image you have to add a flag (--build)
     $  docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
  
+
+
+// NOTE: we've installed dependencies twice once for the common docker-compose and another for the (dev or prod) 
+// To prevent this, we can create two differnt Dockerfiles and each with its own commands.
+
+// Another solution is to override commands in .dev & .prod
