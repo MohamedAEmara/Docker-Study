@@ -173,3 +173,42 @@ Any commnd from docker-compose, you can run like this:
 
 // To stop the container:
     $ docker-compose down 
+
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Environment Variables <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+To setup env variables, 
+1- we can add them in the (Dockerfile) ... for example:
+    ENV PORT = 4000         # declare enviroment variable 
+    EXPOSE $PORT            # pass enviroment variable
+// These are in (Dockerfile)
+
+
+2- to pass enviroment variables as arguments in the terminal.
+    with flag (--e)
+    $ docker run --name container -v C:\repos\Docker-Study\src:/app/src:ro --env PORT=4000 --env NODE_ENV=development -d -p 4000:4000 docker-study-node-app
+// Inside the container terminal, you can run "printenv" to list all enviroment variables.
+
+
+3- an easier way to do this, is to pass a file containing env variables.
+    with flag (--env-file  <FILE-PATH>)
+    $ docker run --name container -v C:\repos\Docker-Study\src:/app/src:ro --env PORT=4000 --env-file ./.env NODE_ENV=development -d -p 4000:4000 docker-study-node-app
+
+
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Environment Variables in docker-compose <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+version: "3"
+services: 
+  node-app: 
+    container_name: express-node-app-container              
+    build: .                                                
+    volumes: 
+      - ./src:/app/src:ro              ### NOTE: here you can use (relative path)
+    ports: 
+      - "4000:4000"
+    enviroment:
+      - PORT=4000
+      - NODE_ENV=production
