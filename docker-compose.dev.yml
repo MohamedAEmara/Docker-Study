@@ -1,4 +1,3 @@
-version: "3"
 services: 
   node-app: 
     container_name: express-node-app-container              
@@ -7,6 +6,7 @@ services:
       - ./src:/app/src:ro              ### NOTE: here you can use (relative path)
     ports: 
       - "4000:4000"
-    enviroment:
-      - HI=4000
-      - BYE=production
+    env_file: 
+      - ./.env
+    environment:
+      - NODE_ENV=development

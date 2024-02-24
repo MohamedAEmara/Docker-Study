@@ -1,0 +1,15 @@
+version: "3"
+services: 
+  node-app: 
+    container_name: express-node-app-container              
+    build: .                                                
+# NOTE: in production, we may not need to listen for any changes in code
+    # volumes: 
+    #   - ./src:/app/src:ro              ### NOTE: here you can use (relative path)
+    ports: 
+      - "4000:4000"
+    env_file:
+      - ./.env
+    environment:
+      - NODE_ENV=production
+    # This means: Take this variable and other variables from a file.
