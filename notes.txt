@@ -136,3 +136,40 @@ NOTE: If I deleted "node_modules" the docker container will stop. as the contain
 // To save specified files even if they were deleted from the working directory:
 /// We will add another flag -v after that the files or folder we want to save from deletion.
     $ docker run --name nodemon-app-container2 -v C:/repos/Docker-Study:/app:ro -v /app/node_modules -d -p 2200:4000 test-nodemon-app
+
+
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Docker Compose <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Firstly, we create a file       ==>     "docker-compose.yml"
+
+=========
+1- Specify the version of docker-compose
+    version: "3"
+2- Specify the services (containers) you have.
+    services: 
+        node-app: 
+            container_name: express-node-app-container              // For example.
+            build: .                                                // the starter Dockerfile path
+            volumes: 
+                - ./src:/app/src:ro              ### NOTE: here you can use (relative path)
+            ports: 
+                - "4000:4000"
+
+
+// NOW, I have successfully created a "docker-compose.yml" file that holds all instructions that I was using before.
+Any commnd from docker-compose, you can run like this:
+    $ docker-compose --version          # to list all available options..
+
+// To run commands in (docker-compose) you use:
+    $ docker-compose up
+// This will build an image, then run a container..
+ 
+
+// And to run the container in the Background: 
+    $ docker-compose up -d
+
+
+// To stop the container:
+    $ docker-compose down 
