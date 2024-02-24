@@ -1,4 +1,6 @@
 /node_modules
 .env
 Dockerfile    
-#You don't need to copy it as you've already run it.
+# You don't need to copy it as you've already run it.
+docker-compose*
+# Ignore any file starting with (docker-compose)

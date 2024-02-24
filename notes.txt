@@ -216,4 +216,11 @@ services:
 
 // NOTE: instead of repeating common env variables, you can create a file (docker-compose) that holds the common Variables.
     and other two (docker-compose.dev & docker-compose.prod) to hold other variables.
-    
+Now, to run a container in (Development), you have to call both common & dev docker-compose:
+    $ docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d
+and same for (Production)
+
+
+// If you want to recreate an image you have to add a flag (--build)
+    $  docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
+ 
