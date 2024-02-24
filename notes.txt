@@ -212,3 +212,8 @@ services:
     enviroment:
       - PORT=4000
       - NODE_ENV=production
+
+
+// NOTE: instead of repeating common env variables, you can create a file (docker-compose) that holds the common Variables.
+    and other two (docker-compose.dev & docker-compose.prod) to hold other variables.
+    
