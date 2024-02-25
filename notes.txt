@@ -230,3 +230,37 @@ and same for (Production)
 // To prevent this, we can create two differnt Dockerfiles and each with its own commands.
 
 // Another solution is to override commands in .dev & .prod
+
+
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> MongoDB container <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+To run another container to hold out DB, we have to add another service in (docker-compose)
+We go to (docker hub) and search for (MongoDB) to get the instructions to install (MongoDB) from documentation.
+
+mongo:
+    image: mongo
+    restart: always
+    environment:
+        MONGO_INITDB_ROOT_USERNAME: root
+        MONGO_INITDB_ROOT_PASSWORD: example
+    
+NOTE: we can call the service whatever we want.
+NOTE: we don't build an image, we just run the container from this public image.
+
+Now when we run:  $ docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build
+    we'll get two containers, one for node & one for mongo.
+
+And if we run docker ps, we'll see two running containers
+
+Now, we'll use mongoose 
+But we want to get the required files for the DATABASE_URI
+ `mongodb://username:password@host:port`;
+
+To get all data about the container:
+    $ docker inspect node-express-app_mongo_1
+This allows us to get all the data:
+To get the host: 
+    - in Networks field, you'll find for example "docker-study-default"
+    and another fileds like "IP address"
