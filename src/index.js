@@ -30,9 +30,17 @@ mongoose
     .catch(err => console.log('Failed to connect to DB ' + err));
     
     app.get('/', (req, res) => {
+        // Cash this key with this value in memory when user request this route..
+        redisClient.set('products', 'products...');
         res.send('<h1> Another line </h1>');
     })
 
+
+    app.get('/data', async (req, res) => {
+        // Get the cashed products..
+        const products = await redisClient.get('products');
+        res.send(`<h1>${products}</h1>`)
+    })
     const PORT = 4000;
     app.listen(PORT, () => {
         console.log(`Server is running on port ${PORT}...`);
