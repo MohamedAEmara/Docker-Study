@@ -264,3 +264,38 @@ This allows us to get all the data:
 To get the host: 
     - in Networks field, you'll find for example "docker-study-default"
     and another fileds like "IP address"
+
+
+
+
+
+// To list all volumes on your machine:
+    $ docker volume ls
+
+// To delete any of these volumes: 
+    $ docker volume rm <Volume-Name>
+
+// To remove all volumes that currently unused or there's no container uses it:
+    $ docker volume prune 
+
+
+// NOTE: after creating volumes and choose a path for it
+    // When we delete the container and create a new one, Data remains.
+
+
+
+// NOTE: 
+    // If you want to delete volumes with the container, you can add a flag (-v) after the (down) command.
+
+
+// To connect to DB container created from terminal:
+    $ docker exec -it <MONGO-CONTAINER-NAME> mongosh -u <MONGO-USERNAME> -p <MONGO-PASSWORD> 
+    $ docker exec -it docker-study-mongo-1 mongosh -u root -p example
+
+From mongo terminal, you can create, delete, .... show tables and so on.
+
+
+
+mongo-express:
+    is a UI tool to use mongoDB.
+

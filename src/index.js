@@ -9,7 +9,7 @@ const app = express();
 const DB_USER = 'root'
 const DB_PASSWORD = 'example'
 const DB_PORT = 27017;          // Default for mongoDB
-const DB_HOST = '172.20.0.2'    // From docker inspect
+const DB_HOST = 'mongo'    // From docker inspect
 const URI = `mongodb://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}`;
 mongoose
     .connect(URI)
