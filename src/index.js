@@ -7,11 +7,16 @@ const app = express();
 
 
 // Connect to Redis
-const redisClient = redis.createClient();
+const REDIS_PORT = 6379;
+const REDIS_HOST = 'redis';
+
+const redisClient = redis.createClient({
+    url: `redis://${REDIS_HOST}:${REDIS_PORT}`
+    // url: 'redis://<USERNAME>:<PASSWORD>@<HOST>:<PORT>'
+});
 redisClient.on('error', (err) => console.log('Redis Client Error:', err));
 redisClient.on('connect', () => console.log('Connected to redis...'));
 redisClient.connect();
-console.log('Test Test');
 
 // Connect DB
 const DB_USER = 'root'
@@ -31,5 +36,4 @@ mongoose
     const PORT = 4000;
     app.listen(PORT, () => {
         console.log(`Server is running on port ${PORT}...`);
-        console.log('Test Test Test');
 })
