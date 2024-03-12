@@ -299,3 +299,41 @@ From mongo terminal, you can create, delete, .... show tables and so on.
 mongo-express:
     is a UI tool to use mongoDB.
 
+
+
+
+// NOTE: 
+// When we create more than one container, for example: mongo & express
+// Sometimes the order of creating images is crucial
+
+// To tell docker which container you want to create first:
+    We add 
+    depends_on: 
+      - ServiceName
+
+// Example: 
+
+version: "3"
+services: 
+  node-app: 
+    container_name: express-node-app-container              
+    ports: 
+      - "4000:4000"
+    env_file:
+      - ./.env
+    depends_on:
+      - mongo
+
+
+
+    
+
+// NOTE: 
+    in Redis docs, the default host is "localhost" 
+    But we run redis in a container, and docker gives this container an IP address.
+    
+    We can see result errors from terminal using this command:
+        $ docker logs express-node-app-container 
+
+    Redis Client Error Error: connect ECONNREFUSED 127.0.0.1:6379
+// To solve this;
